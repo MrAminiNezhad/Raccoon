@@ -1,0 +1,206 @@
+body {
+  font-family: 'Yekan', Yekan;
+  background-color: #171d34;
+}
+:root {
+  --e-global-color-primary: #242b44;
+  --e-global-color-secondary: #ffffff;
+  --e-global-color-accent: #4aa5f0;
+  --e-global-color-text: #afb6d2;
+  --e-global-color-hover: #d88730;
+  --e-global-color-dark-blue: #171d34;
+  --e-global-color-yellow:#fdde47;
+  --e-global-color-dark-blue2: #1c223a;
+  --e-global-color-very-dark-blue: #1a2037;
+  --e-global-color-soft-blue: #484d5f;
+  --e-global-color-dark-blue3:#1d233c;
+  --e-global-color-blue-f:#2a3150;
+  --e-global-color-dark-bluish:#1f253e;
+  --e-global-color-blue-best:#1b2137;
+  --e-global-color-bar: #2f3449;
+}
+html {
+  scroll-behavior: smooth;
+}
+p {
+  font-size: 30px;
+  line-height:26px;
+  font-weight: 400;
+}
+a {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 600;
+}
+.home-header-section {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background:var(--e-global-color-very-dark-blue);
+  position: relative;
+  overflow: hidden;
+}
+.home-header-section .banner-right-img{
+  position: absolute;
+  width: 1689px;
+  height: 1262px;
+  bottom: 105px;
+  right: -353px;
+}
+.home-header-section:before {
+  background: url(../images//header-left-circle-img.png);
+  content: "";
+  width: 445px;
+  height: 445px;
+  position: absolute;
+  top: -180px;
+  left: -240px;
+}
+.home-header-section .main-header .navbar-brand {
+  margin-left: 0px;
+  padding-bottom:0px;
+  margin-right: 181px;
+}
+.home-header-section .main-header {
+  padding: 26px 298px 0 350px;
+}
+.home-banner-section {
+  padding-top: 15%;
+  padding-bottom: 185px;
+}
+.banner-img-content figure {
+  margin-left: 0;
+  position: absolute;
+  top: -160px;
+  left: 20px;
+}
+.star {
+  animation: star 10s ease-out infinite;
+}
+@keyframes star {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) translateY(-0.75em);
+  }
+  20% {
+    opacity: 1;
+  }
+  89% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(-1000em);
+  }
+}
+
+.footer-section {
+  background: var(--e-global-color-dark-blue);
+  color: var(--e-global-color-secondary);
+  overflow: hidden;
+  position: relative;
+}
+.footer-section .footer-bar .footer-bar-content p {
+  font-size: 16px;
+  line-height: 29px;
+  font-weight: 400;
+  color: var(--e-global-color-text);
+}
+.footer-bar .footer-bar-content {
+  padding: 16px 0;
+  border-top: 1px solid var(--e-global-color-bar);
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  color: #000;
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size:14px;
+}
+li a:hover {
+  text-decoration: underline;
+}
+.grid{
+  height:23px;
+  position:relative;
+  bottom:4px;
+}
+.signbutton{
+  background-color: #4885ed;
+  color: #fff;
+  border:none;
+  border-radius:3px;
+  padding:7px 10px;
+  position:relative;
+  bottom:7px;
+  font-weight:bold;
+}
+.logo{
+  margin-bottom:20px;
+  color: fff;
+}
+.bar{
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 30px;
+  border: 1px solid #dcdcdc;
+  background-color: fff;
+}
+.bar:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+.bar:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+.searchbar{
+  height:45px;
+  border:none;
+  width:80%;
+  font-size:16px;
+  outline: none;
+  
+}
+.buttons{
+  margin-top:30px;
+}
+.button{
+  background-color: #f5f5f5;
+  border:none;
+  color:#707070;
+  font-size:15px;
+  padding: 10px 20px;
+  margin:5px;
+  border-radius:4px;
+  outline:none;
+}
+.button:hover{
+  border: 1px solid #c8c8c8;
+  padding: 9px 19px;
+  color:#808080;
+}
+.button:focus{
+  border:1px solid #4885ed;
+  padding: 9px 19px;
+}
+
+@font-face {
+font-family: Yekan;
+src: url('assets/fonts/Yekan.woff');
+src: url('Yekan.woff?#iefix') format('embedded-opentype'),
+url('Yekan.woff') format('woff'),
+url('Yekan.ttf') format('truetype');
+font-weight: normal;
+}
