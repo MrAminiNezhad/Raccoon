@@ -9,9 +9,9 @@ if (isset($_GET['lang'])) {
 }
 
 if ($selected_language == 'en') {
-    include 'lang/en.php'; 
+    require 'lang/en.php'; 
 } else {
-    include 'lang/fa.php';
+    require 'lang/fa.php';
 }
 ?>
 <html>
