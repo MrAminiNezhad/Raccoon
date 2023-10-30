@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST['search_query'];
     run_login_script($panel, $cookie_file);
     $FinalpanelUrlArr = [
-        '1' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
-        '2' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
+        'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
+        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
     ];
     if (!isset($FinalpanelUrlArr[$info['type']]))
         die("مقدار type نامعتبر است.");
@@ -87,6 +87,7 @@ if (isset($_GET['lang'])) {
 } else {
     $selected_language = isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa';
 }
+
 $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
 
 ?>
