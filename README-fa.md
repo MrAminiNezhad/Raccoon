@@ -15,7 +15,7 @@
 
 # آموزش نصب
 جهت نصب کافیست فایل های پروژه را دانلود و به هاست انتقال بدید سپس اطلاعات پنل خود را در فایل info.php قرار بدید <br>
-اگر پنل ثنایی  می باشد مقدار nopanel را 1 وارد نمایید در صورتی که پنل علیرضا می باشد عدد 2 را وارد بکنید
+type های پشتیبانی شده: sanaei, alireza
 # پیش نمایش
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (2).png" width="700"></div>

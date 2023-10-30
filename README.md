@@ -18,7 +18,7 @@ Raccoon is a web-based script that can be installed on various PHP hosting platf
 
 # Installation Guide
 To install, simply download the project files and transfer them to your hosting. Then, put your panel information in the info.php file. <br>
-If it's a Sanaei panel, enter the value 1; if it's an Alireza panel, enter the number 2.
+Supported types: sanaei, alireza
 
 # Preview
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>

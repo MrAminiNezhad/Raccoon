@@ -1,8 +1,6 @@
 <?php
-$info = require 'info.php';
-$nopanel = $info['nopanel'];
-$panel = $info;
-$cookie_file = 'cookies.txt';
+$panel = require 'info.php';
+$cookie_file = '.cookies.txt';
 function run_login_script($panel, $cookie_file)
 {
     $url = $panel['panel_url'] . 'login';
@@ -33,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST['search_query'];
     run_login_script($panel, $cookie_file);
     $FinalpanelUrlArr = [
-        '1' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
-        '2' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
+        'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
+        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
     ];
-    if (!isset($FinalpanelUrlArr[$nopanel]))
-        die("مقدار nopanel نامعتبر است.");
+    if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza')
+        die("مقدار type نامعتبر است.");
 
-    $final_url = $FinalpanelUrlArr[$nopanel];
+    $final_url = $FinalpanelUrlArr[$panel['type']];
 
     $ch = curl_init($final_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -89,6 +87,7 @@ if (isset($_GET['lang'])) {
 } else {
     $selected_language = isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa';
 }
+
 $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
 
 ?>
