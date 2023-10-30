@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
         'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
     ];
-    if (!isset($FinalpanelUrlArr[$panel['type']]) || isset($FinalpanelUrlArr[$panel['type']]) && $panel['type'] != 'sanaei' && $panel['type'] != 'alireza')
+    if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza')
         die("مقدار type نامعتبر است.");
 
     $final_url = $FinalpanelUrlArr[$panel['type']];
