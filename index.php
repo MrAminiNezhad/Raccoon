@@ -76,7 +76,7 @@ if ($selected_language == 'en') {
             <a href="?lang=fa">🇮🇷</a>
             <a href="?lang=en">🇺🇸</a>
            </p>
-            <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> © 2023. All Rights Reserved.</p>
+            <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a></p>
           </div>
         </div>
       </div>
