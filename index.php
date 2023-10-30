@@ -1,17 +1,12 @@
 <?php
 session_start();
 
-if (isset($_GET['lang'])) {
-    $selected_language = $_GET['lang'];
-    $_SESSION['selected_language'] = $selected_language;
-} else {
-    $selected_language = isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa';
-}
+$selected_language = isset($_GET['lang']) ? $_SESSION['selected_language'] = $_GET['lang'] : (isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa');
 
 if ($selected_language == 'en') {
-    include 'lang/en.php'; 
+    require 'lang/en.php'; 
 } else {
-    include 'lang/fa.php';
+    require 'lang/fa.php';
 }
 ?>
 <html>
