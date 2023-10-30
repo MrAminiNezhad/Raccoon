@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
         'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
     ];
-    if (!isset($FinalpanelUrlArr[$info['type']]))
+    if (!isset($FinalpanelUrlArr[$panel['type']]))
         die("مقدار type نامعتبر است.");
 
-    $final_url = $FinalpanelUrlArr[$info['type']];
+    $final_url = $FinalpanelUrlArr[$panel['type']];
 
     $ch = curl_init($final_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
