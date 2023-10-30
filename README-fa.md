@@ -15,8 +15,7 @@
 
 # آموزش نصب
 جهت نصب کافیست فایل های پروژه را دانلود و به هاست انتقال بدید سپس اطلاعات پنل خود را در فایل info.php قرار بدید <br>
-type های پشتیبانی شده:
-sanaei, alireza
+type های پشتیبانی شده: sanaei, alireza
 # پیش نمایش
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (2).png" width="700"></div>
