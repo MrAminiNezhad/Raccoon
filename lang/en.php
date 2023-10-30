@@ -1,5 +1,5 @@
 <?php
-$lang = array(
+return [
     'title_serch_page' => 'Search Results | Raccoon',
     'title_index_page' => 'Service Information | Raccoon',
     'search_bar' => 'Enter your username',
@@ -18,6 +18,5 @@ $lang = array(
     'expiry_date' => 'Expiration Date',
     'remaining_days' => 'Days Left',
     'select_lang' => 'Select language',
-);
-
+];
 ?>
