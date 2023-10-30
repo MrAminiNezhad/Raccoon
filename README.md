@@ -3,6 +3,7 @@
 برای توضیحات <a href="https://github.com/MrAminiNezhad/Raccoon/blob/main/README-fa.md"> فارسی اینجا بزنید </a>
 </div>
 <br><br>
+
 # What is Raccoon Script?
 Raccoon is a web-based script that can be installed on various PHP hosting platforms. Using the Raccoon script, you can create an online website to display the details of a service and its remaining balance. This allows your users to easily view their service details by entering their configuration name in a complete and online format.
 
