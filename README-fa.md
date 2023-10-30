@@ -22,8 +22,8 @@
 
 # با تشکر از
 
-<a href="https://github.com/ILYAGVC"> ILYAGVC </a>
-
+<a href="https://github.com/ILYAGVC"> ILYAGVC </a> <br>
+<a href="https://github.com/alirezax5"> alirezax5 </a>
 
 # حمایت از پروژه
 جهت حمایت از پروژه و ارائه بروز رسانی های بیشتر از پروژه حمایت بکنید <br>
