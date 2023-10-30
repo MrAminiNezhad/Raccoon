@@ -24,9 +24,5 @@ If it's a Sanaei panel, enter the value 1; if it's an Alireza panel, enter the n
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (2).png" width="700"></div>
 
-# A Special Thanks To
-
-<a href="https://github.com/ILYAGVC"> ILYAGVC </a>
-
 # Donation
  Trx Wallet: TQhwK6q94GgpUZSsHBjiUWc6xAHz5Df9mW
