@@ -3,11 +3,8 @@ session_start();
 
 $selected_language = isset($_GET['lang']) ? $_SESSION['selected_language'] = $_GET['lang'] : (isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa');
 
-if ($selected_language == 'en') {
-    require 'lang/en.php'; 
-} else {
-    require 'lang/fa.php';
-}
+$lang = $selected_language == 'en' ? require_once 'lang/en.php' : require_once 'lang/fa.php';
+
 ?>
 <html>
   <head>
