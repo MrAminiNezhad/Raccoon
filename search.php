@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $expiry_datetime = new DateTime();
     $expiry_datetime->setTimestamp($expiry_time / 1000);
 
-    include 'jdf.php';
+    require 'jdf.php';
     $jalali_expiry = jdate('Y/m/d H:i:s', $expiry_datetime->getTimestamp());
     $expiry_time_str = $jalali_expiry;
     $config_name = $search_query;
@@ -85,7 +85,7 @@ if (isset($_GET['lang'])) {
 } else {
     $selected_language = isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa';
 }
-$lang = $selected_language == 'en' ? require_once 'lang/en.php' : require_once 'lang/fa.php';
+$lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
 
 ?>
 
