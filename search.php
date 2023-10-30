@@ -1,12 +1,7 @@
 <?php
-$json_content = file_get_contents('info.json');
-$info_data = json_decode($json_content, true);
-$nopanel = $info_data['nopanel'];
-$panel = array(
-    'panel_url' => $info_data['panel_url'],
-    'panel_user' => $info_data['panel_user'],
-    'panel_pass' => $info_data['panel_pass'],
-);
+require 'info.php';
+$nopanel = $info['nopanel'];
+$panel = $info;
 $cookie_file = 'cookies.txt';
 function run_login_script($panel, $cookie_file)
 {
