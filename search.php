@@ -1,8 +1,6 @@
 <?php
-$info = require 'info.php';
-$nopanel = $info['nopanel'];
-$panel = $info;
-$cookie_file = 'cookies.txt';
+$panel = require 'info.php';
+$cookie_file = '.cookies.txt';
 function run_login_script($panel, $cookie_file)
 {
     $url = $panel['panel_url'] . 'login';
@@ -36,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '1' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
         '2' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
     ];
-    if (!isset($FinalpanelUrlArr[$nopanel]))
-        die("مقدار nopanel نامعتبر است.");
+    if (!isset($FinalpanelUrlArr[$info['type']]))
+        die("مقدار type نامعتبر است.");
 
-    $final_url = $FinalpanelUrlArr[$nopanel];
+    $final_url = $FinalpanelUrlArr[$info['type']];
 
     $ch = curl_init($final_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
