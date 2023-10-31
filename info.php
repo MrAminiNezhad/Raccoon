@@ -8,4 +8,5 @@ return [
     "panel_user" => "admin",
     "panel_pass" => "admin",
     "type" => "sanaei"
+    "crisp" => "Your ID" 
 ];
