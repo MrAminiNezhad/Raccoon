@@ -1,5 +1,6 @@
 <?php
 $panel = require 'info.php';
+$crisp = $info['crisp'];
 $cookie_file = '.cookies.txt';
 function run_login_script($panel, $cookie_file)
 {
@@ -89,7 +90,7 @@ if (isset($_GET['lang'])) {
 }
 
 $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
-
+$crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$info['crisp']}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
 ?>
 
 <html dir="rtl">
@@ -269,5 +270,6 @@ $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.ph
         </a>
     </div>
 </div>
+<?php echo $crisp_script; ?>
 </body>
 </html>
