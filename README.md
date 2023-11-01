@@ -19,7 +19,8 @@ Raccoon is a web-based script that can be installed on various PHP hosting platf
 
 # Installation Guide
 To install, simply download the project files and transfer them to your hosting. Then, put your panel information in the info.php file. <br>
-Supported types: sanaei, alireza
+Supported types: sanaei, alireza <br>
+Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the info.php file instead of Your ID.
 
 # Preview
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
