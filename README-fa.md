@@ -12,10 +12,12 @@
 6- نمایش روز های باقی مانده <br>
 7- نمایش ترافیک باقی مانده <br>
 8- پشتیبانی از چندین زبان <br>
+9- قابلیت چت آنلاین بدون نیاز به فیلتر شکن ! 
 
 # آموزش نصب
 جهت نصب کافیست فایل های پروژه را دانلود و به هاست انتقال بدید سپس اطلاعات پنل خود را در فایل info.php قرار بدید <br>
-type های پشتیبانی شده: sanaei, alireza
+type های پشتیبانی شده: sanaei, alireza <br>
+سپس برای فعال کردن چت آنلاین وارد سایت crisp.chat شوید و عضو شوید پس از گذراندن مراحل عضویت و ورود به صفحه اول روی چرخ دنده پایین صفحه بزنید و سپس گزینه اول account را انتخاب بکنید و بعد وارد بخش Website Settings شود در این بخش جلوی اسم سایتتان روی settings بزنید و گزینه Setup instructions بزنید و Website ID را کپی و در فایل info.php به جای Your ID وارد نمایید.
 # پیش نمایش
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (2).png" width="700"></div>
