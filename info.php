@@ -7,6 +7,6 @@ return [
     "panel_url" => "https://panel.com:2020/",
     "panel_user" => "admin",
     "panel_pass" => "admin",
-    "type" => "sanaei"
+    "type" => "sanaei" ,
     "crisp" => "Your ID" 
 ];
