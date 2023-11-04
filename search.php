@@ -30,10 +30,11 @@ function run_login_script($panel, $cookie_file)
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST['search_query'];
+    $search_query_encoded = str_replace(' ', '%20', $search_query);
     run_login_script($panel, $cookie_file);
     $FinalpanelUrlArr = [
-        'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query,
-        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query
+        'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded,
+        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded
     ];
     if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza')
         die("مقدار type نامعتبر است.");
