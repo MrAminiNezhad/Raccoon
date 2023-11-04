@@ -1,4 +1,5 @@
 <?php
+require_once 'functions.php';
 $panel = require 'info.php';
 $crisp = $info['crisp'];
 $cookie_file = '.cookies.txt';
