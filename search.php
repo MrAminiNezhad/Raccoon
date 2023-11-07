@@ -87,7 +87,7 @@
        }
        else
        {
-           $baghimande = $total - $total_traffic;
+           $baghimande = number_format($baghimande, 2);
        }
        
        $remaining_days = $interval->days;
