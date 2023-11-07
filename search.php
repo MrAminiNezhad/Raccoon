@@ -49,6 +49,7 @@
        $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024) , 2);
        $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024) , 2);
        $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+       $total2 = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
        if ($total == 0)
        {
            $total = "نامحدود ";
@@ -57,15 +58,7 @@
        {
            $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
        }
-       $baghimande = $total - $total_traffic;
-       if ($baghimande <= 0)
-       {
-           $baghimande = "نامحدود ";
-       }
-       else
-       {
-           $baghimande = number_format($baghimande, 2);
-       }
+
    
        $expiry_time = $json_response['obj']['expiryTime'];
        if ($expiry_time === 0)
@@ -86,17 +79,30 @@
        $total_traffic = $up + $down;
        $current_date = new DateTime();
        $expiry_date = $expiry_datetime;
-   
-       $interval = $current_date->diff($expiry_date);
-       $remaining_days = $interval->days;
-       if ($remaining_days <= 0)
+       
+        $baghimande = $total - $total_traffic;
+       if ($total2 <= 0)
        {
-           $remaining_days = "نامحدود ";
+           $baghimande = "نامحدود ";
        }
        else
        {
-           $remaining_days = $interval->days;
+           $baghimande = $total - $total_traffic;
        }
+       
+       $remaining_days = $interval->days;
+       $interval = $current_date->diff($expiry_date);
+
+        if ($expiry_time === 0) {
+            $remaining_days = "نامحدود ";
+        } else {
+            $interval = $current_date->diff($expiry_date);
+            $remaining_days = $interval->days;
+        
+            if ($remaining_days <= 0 || $expiry_date < new DateTime()) {
+                $remaining_days = 0;
+            }
+        }
        if (is_null($json_response['obj']))
        {
            $status = "کانفینگ اشتباه است";
