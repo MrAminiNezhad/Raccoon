@@ -45,11 +45,13 @@
        if ($response === false) die("خطا در اجرای مرحله جستجو: " . curl_error($ch));
        $json_response = json_decode($response, true);
        if (!$json_response) die("خطا در تحلیل پاسخ JSON");
-   
-       $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024) , 2);
-       $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024) , 2);
-       $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
-       $total2 = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+
+      if (!is_null($json_response['obj'])){
+         $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024) , 2);
+         $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024) , 2);
+         $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+         $total2 = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+         $expiry_time = $json_response['obj']['expiryTime'];
        if ($total == 0)
        {
            $total = "نامحدود ";
@@ -60,7 +62,6 @@
        }
 
    
-       $expiry_time = $json_response['obj']['expiryTime'];
        if ($expiry_time === 0)
        {
            $expiry_time_str = "نامحدود ";
@@ -87,7 +88,7 @@
        }
        else
        {
-           $baghimande = number_format($baghimande, 2);
+           $baghimande = $total - $total_traffic;
        }
        
        $remaining_days = $interval->days;
@@ -103,7 +104,7 @@
                 $remaining_days = 0;
             }
         }
-       if (is_null($json_response['obj']))
+      }else if (is_null($json_response['obj']))
        {
            $status = "کانفینگ اشتباه است";
            $up = 0;
@@ -114,6 +115,8 @@
            $baghimande = 0;
            $remaining_days = 0;
            $enable = 0;
+           $config_name = "چیزی پیدا نشد :)";
+           $config_status = "پیدا نشد";
        }
        else
        {
