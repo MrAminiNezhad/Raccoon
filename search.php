@@ -24,9 +24,9 @@
    }
    
    $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
-   if ($_SERVER["REQUEST_METHOD"] == "POST")
+   if (isset($_GET['id']))
    {
-       $search_query = $_POST['search_query'];
+       $search_query = $_GET['id'];
        $search_query_encoded = url_encode_full($search_query);
        run_login_script($panel, $cookie_file);
        $FinalpanelUrlArr = ['sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded, 'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded];
