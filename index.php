@@ -46,9 +46,9 @@ if (strlen($crisp) >= 20) {
           <div class="logo">
             <p><?php echo $lang['search_bar']; ?></p>
           </div>
-          <form action="search.php" method="post">
+          <form action="search.php" method="get">
             <div class="bar">
-              <input class="searchbar" type="text" title="Search" id="search_query" name="search_query" required>
+              <input class="searchbar" type="text" title="Search" id="search_query" name="id" required>
             </div>
             <div class="buttons">
               <button class="button" type="submit"><?php echo $lang['button_search']; ?></button>
@@ -72,10 +72,10 @@ if (strlen($crisp) >= 20) {
         <div class="row">
           <div class="footer-bar-content w-100">
             <p><?php echo $lang['select_lang']; ?>  
-            <a href="?lang=fa">🇮🇷</a>
-            <a href="?lang=en">🇺🇸</a>
+            <a href="?lang=fa">ðŸ‡®ðŸ‡·</a>
+            <a href="?lang=en">ðŸ‡ºðŸ‡¸</a>
            </p>
-            <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> © 2023. All Rights Reserved.</p>
+            <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> Â© 2023. All Rights Reserved.</p>
           </div>
         </div>
       </div>
