@@ -1,33 +1,16 @@
 <?php
-require_once 'functions.php';
-$panel = require 'info.php';
+require_once  __DIR__ . '/functions.php';
+$panel = require  __DIR__ .  '/info.php';
 $crisp = $panel['crisp'];
 $cookie_file = '.cookies.txt';
-function run_login_script($panel, $cookie_file)
-{
-   $url = $panel['panel_url'] . 'login';
-   $data = ['username' => $panel['panel_user'], 'password' => $panel['panel_pass']];
 
-   $ch = curl_init($url);
-   curl_setopt($ch, CURLOPT_POST, true);
-   curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-   curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
-   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
-   $response = curl_exec($ch);
-
-   if ($response === false) throw new Exception("خطا در اجرای مرحله ورود به پنل: " . curl_error($ch));
-
-   curl_close($ch);
-}
 
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
    $search_query_encoded = url_encode_full($search_query);
-   run_login_script($panel, $cookie_file);
+   if (run_login_script($panel, $cookie_file) == false) throw new Exception("خطا در اجرای مرحله ورود به پنل: " . curl_error($ch));
+
    $FinalpanelUrlArr = ['sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded, 'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded];
    if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza') throw new Exception("مقدار type نامعتبر است.");
 
