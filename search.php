@@ -45,6 +45,12 @@ if (isset($_GET['id'])) {
    $json_response = json_decode($response, true);
    if (!$json_response) throw new Exception("خطا در تحلیل پاسخ JSON");
 
+
+   if ($json_response['obj'] === null) {
+      include __DIR__ . '/notfound.html';
+      die;
+   }
+
    $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024), 2);
    $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024), 2);
    $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024), 2);
@@ -93,22 +99,11 @@ if (isset($_GET['id'])) {
          $remaining_days = 0;
       }
    }
-   if (is_null($json_response['obj'])) {
-      $status = "کانفینگ اشتباه است";
-      $up = 0;
-      $down = 0;
-      $total = 0;
-      $expiry_time_str = 0;
-      $total_traffic = 0;
-      $baghimande = 0;
-      $remaining_days = 0;
-      $enable = 0;
-   } else {
-      $enable = $json_response['obj']['enable'];
-      $status = $enable === true ? 'فعال' : 'غیرفعال';
-      $enable = $json_response['obj']['enable'];
-      $config_status = $enable === true ? '🟢' : '🔴';
-   }
+
+   $enable = $json_response['obj']['enable'];
+   $status = $enable === true ? 'فعال' : 'غیرفعال';
+   $enable = $json_response['obj']['enable'];
+   $config_status = $enable === true ? '🟢' : '🔴';
 }
 session_start();
 
