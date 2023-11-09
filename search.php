@@ -1,6 +1,7 @@
 <?php
 require_once  __DIR__ . '/functions.php';
 $panel = require  __DIR__ .  '/info.php';
+require_once __DIR__ . '/jdf.php';
 $crisp = $panel['crisp'];
 $cookie_file = '.cookies.txt';
 
@@ -9,84 +10,36 @@ $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
    $search_query_encoded = url_encode_full($search_query);
-   if (run_login_script($panel, $cookie_file) == false) throw new Exception("خطا در اجرای مرحله ورود به پنل: " . curl_error($ch));
 
-   $FinalpanelUrlArr = ['sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded, 'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded];
-   if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza') throw new Exception("مقدار type نامعتبر است.");
+   $final_url =  match ($panel['type']) {
+      'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded,
 
-   $final_url = $FinalpanelUrlArr[$panel['type']];
+      'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded,
+
+      'xpanel' => $panel['panel_url'] . "api/{$panel['api-key']}/user/" . $search_query_encoded,
+
+      default =>  throw new Exception('wrong panel type')
+   };
+
+   if ($panel['type'] !== 'xpanel') run_login_script($panel, $cookie_file);
+
+
 
    $ch = curl_init($final_url);
+   if ($panel['type'] !== 'xpanel') curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
    $response = curl_exec($ch);
 
-   if ($response === false) throw new Exception("خطا در اجرای مرحله جستجو: " . curl_error($ch));
-   $json_response = json_decode($response, true);
-   if (!$json_response) throw new Exception("خطا در تحلیل پاسخ JSON");
 
+   if ($response === false) throw new Exception("error in search client" . curl_error($ch));
+   $info = json_decode($response, true);
+   if (!$info) throw new Exception("error in json result");
 
-   if ($json_response['obj'] === null) {
-      include __DIR__ . '/notfound.html';
-      die;
-   }
-
-   $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024), 2);
-   $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024), 2);
-   $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024), 2);
-   $total2 = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024), 2);
-   if ($total == 0) {
-      $total = "نامحدود ";
-   } else {
-      $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024), 2);
-   }
-
-
-   $expiry_time = $json_response['obj']['expiryTime'];
-   if ($expiry_time === 0) {
-      $expiry_time_str = "نامحدود ";
-   } else {
-      $expiry_datetime = new DateTime();
-      $expiry_datetime->setTimestamp($expiry_time / 1000);
-
-      require 'jdf.php';
-      $jalali_expiry = jdate('Y/m/d H:i:s', $expiry_datetime->getTimestamp());
-      $expiry_time_str = $jalali_expiry;
-   }
-   $config_name = $search_query;
-
-   $total_traffic = $up + $down;
-   $current_date = new DateTime();
-   $expiry_date = $expiry_datetime;
-
-   $baghimande = $total - $total_traffic;
-   if ($total2 <= 0) {
-      $baghimande = "نامحدود ";
-   } else {
-      $baghimande = number_format($baghimande, 2);
-   }
-
-   $remaining_days = $interval->days;
-   $interval = $current_date->diff($expiry_date);
-
-   if ($expiry_time === 0) {
-      $remaining_days = "نامحدود ";
-   } else {
-      $interval = $current_date->diff($expiry_date);
-      $remaining_days = $interval->days;
-
-      if ($remaining_days <= 0 || $expiry_date < new DateTime()) {
-         $remaining_days = 0;
-      }
-   }
-
-   $enable = $json_response['obj']['enable'];
-   $status = $enable === true ? 'فعال' : 'غیرفعال';
-   $enable = $json_response['obj']['enable'];
-   $config_status = $enable === true ? '🟢' : '🔴';
+   $client_info = client_info($info, $panel['type']);
 }
 session_start();
 
@@ -129,7 +82,7 @@ if (strlen($crisp) >= 20) {
       <div class="card" style="background-color: #2b34428a;border-radius: 15px;padding:10px;">
          <div class="card-body" style="display: flex;justify-content: space-between;padding-top: 25px">
             <h5 class="card-title name-conf"><?php echo $lang['config_name']; ?></h5>
-            <p class="card-text"><?php echo $config_name; ?> </p>
+            <p class="card-text"><?php echo $search_query; ?> </p>
          </div>
       </div>
       <br>
@@ -141,7 +94,7 @@ if (strlen($crisp) >= 20) {
                </svg>
                <?php echo $lang['config_status']; ?>
             </a>
-            <a class="card-link l1" style="direction: rtl"> <?php echo $status; ?><?php echo $config_status; ?> </a>
+            <a class="card-link l1" style="direction: rtl"> <?php echo $client_info['status']; ?> </a>
          </div>
          <div class="card-body " style="display: flex;justify-content: space-between">
             <a class="card-link l1">
@@ -150,7 +103,7 @@ if (strlen($crisp) >= 20) {
                </svg>
                <?php echo $lang['expiry_date']; ?>
             </a>
-            <a class="card-link l1" style="direction: ltr"> <?php echo $expiry_time_str; ?> </a>
+            <a class="card-link l1" style="direction: ltr"> <?php echo $client_info['expire_time']; ?> </a>
          </div>
          <div class="card-body " style="display: flex;justify-content: space-between">
             <a class="card-link l1">
@@ -159,7 +112,7 @@ if (strlen($crisp) >= 20) {
                </svg>
                <?php echo $lang['total']; ?>
             </a>
-            <a class="card-link l1" style="direction: rtl"> <?php echo $total; ?><?php echo $lang['gb']; ?> </a>
+            <a class="card-link l1" style="direction: rtl"> <?php echo $client_info['total']; ?><?php echo $lang['gb']; ?> </a>
          </div>
       </div>
    </div>
@@ -167,7 +120,7 @@ if (strlen($crisp) >= 20) {
    <div class="container">
       <div class="flex-container">
          <div class="flex-item">
-            <p class="card-text text-center"> <?php echo $total_traffic; ?><?php echo $lang['gb']; ?> </p>
+            <p class="card-text text-center"> <?php echo $client_info['traffic_used']; ?><?php echo $lang['gb']; ?> </p>
             <p class="card-text car-2 text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                   <path d="M96 0C60.7 0 32 28.7 32 64V448c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32s-14.3-32-32-32V304h16c22.1 0 40 17.9 40 40v32c0 39.8 32.2 72 72 72s72-32.2 72-72V252.3c32.5-10.2 56-40.5 56-76.3V144c0-8.8-7.2-16-16-16H544V80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H480V80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H432c-8.8 0-16 7.2-16 16v32c0 35.8 23.5 66.1 56 76.3V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V344c0-48.6-39.4-88-88-88H320V64c0-35.3-28.7-64-64-64H96zM216.9 82.7c6 4 8.5 11.5 6.3 18.3l-25 74.9H256c6.7 0 12.7 4.2 15 10.4s.5 13.3-4.6 17.7l-112 96c-5.5 4.7-13.4 5.1-19.3 1.1s-8.5-11.5-6.3-18.3l25-74.9H96c-6.7 0-12.7-4.2-15-10.4s-.5-13.3 4.6-17.7l112-96c5.5-4.7 13.4-5.1 19.3-1.1z" />
@@ -176,7 +129,7 @@ if (strlen($crisp) >= 20) {
             </p>
          </div>
          <div class="flex-item">
-            <p class="card-text text-center"> <?php echo $down; ?><?php echo $lang['gb']; ?></p>
+            <p class="card-text text-center"> <?php echo $client_info['download']; ?><?php echo $lang['gb']; ?></p>
             <p class="card-text car-2  text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                   <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
@@ -185,7 +138,7 @@ if (strlen($crisp) >= 20) {
             </p>
          </div>
          <div class="flex-item">
-            <p class="card-text car-1 text-center"> <?php echo $up; ?><?php echo $lang['gb']; ?></p>
+            <p class="card-text car-1 text-center"> <?php echo $client_info['upload']; ?><?php echo $lang['gb']; ?></p>
             <p class="card-text car-2 text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                   <path d="M288 109.3V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V109.3l-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352H192c0 35.3 28.7 64 64 64s64-28.7 64-64H448c35.3 0 64 28.7 64 64v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V416c0-35.3 28.7-64 64-64zM432 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
@@ -194,7 +147,7 @@ if (strlen($crisp) >= 20) {
             </p>
          </div>
          <div class="flex-item">
-            <p class="card-text text-center"> <?php echo $baghimande; ?><?php echo $lang['gb']; ?> </p>
+            <p class="card-text text-center"> <?php echo $client_info['remaining_traffic']; ?><?php echo $lang['gb']; ?> </p>
             <p class="card-text car-2 text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                   <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
@@ -203,7 +156,7 @@ if (strlen($crisp) >= 20) {
             </p>
          </div>
          <div class="flex-item">
-            <p class="card-text text-center"> <?php echo $remaining_days; ?><?php echo $lang['day']; ?> </p>
+            <p class="card-text text-center"> <?php echo $client_info['remaining_days']; ?><?php echo $lang['day']; ?> </p>
             <p class="card-text car-2 text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                   <path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z" />
@@ -212,7 +165,7 @@ if (strlen($crisp) >= 20) {
             </p>
          </div>
          <div class="flex-item">
-            <p class="card-text text-center"> <?php echo $total; ?><?php echo $lang['gb']; ?> </p>
+            <p class="card-text text-center"> <?php echo $client_info['total']; ?><?php echo $lang['gb']; ?> </p>
             <p class="card-text car-2 text-center">
                <svg style="margin-left: 4px" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                   <path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z" />
@@ -231,6 +184,14 @@ if (strlen($crisp) >= 20) {
          <a href="https://sourceforge.net/projects/netmodhttp/" class="flex-item1">
             <div>
                NetMod
+               <svg style="margin-left: 10px;font-size: 21px;" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 384 512">
+                  <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z" />
+               </svg>
+            </div>
+         </a>
+         <a href="https://github.com/InvisibleManVPN/InvisibleMan-XRayClient/releases/" class="flex-item1">
+            <div>
+               InvisMan
                <svg style="margin-left: 10px;font-size: 21px;" fill="#f1faee" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 384 512">
                   <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z" />
                </svg>
