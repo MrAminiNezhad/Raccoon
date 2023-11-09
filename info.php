@@ -7,6 +7,7 @@ return [
     "panel_url" => "https://panel.com:2020/",
     "panel_user" => "admin",
     "panel_pass" => "admin",
-    "type" => "sanaei" ,
-    "crisp" => "Your ID" 
+    "type" => "sanaei", // choose type between  [sanaei,alireza,xpanel]
+    "api-key" => '', // for xpanel only
+    "crisp" => "Your ID"
 ];
