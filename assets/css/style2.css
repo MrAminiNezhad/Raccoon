@@ -1,6 +1,6 @@
 @font-face {
 font-family: Yekan;
-src: url('assets/fonts/Yekan.woff');
+src: url('../fonts/Yekan.woff');
 src: url('Yekan.woff?#iefix') format('embedded-opentype'),
 url('Yekan.woff') format('woff'),
 url('Yekan.ttf') format('truetype');
