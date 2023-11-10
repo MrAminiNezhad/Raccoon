@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ERROR);
+
 $panel = require 'info.php';
 $crisp = $panel['crisp'];
 

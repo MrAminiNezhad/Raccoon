@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ERROR);
+
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     http_response_code(403);
     die('403');
