@@ -63,9 +63,15 @@ function client_info(array $info, string $type)
             $expiry_time_str = "♾️";
             $remaining_days  = "♾️";
         } else {
+            $time = new DateTime($info['end_date']);
+            if ($time < $current_date) {
+                $remaining_days = 0;
+            } else {
 
-            $interval = $current_date->diff(new DateTime($info['end_date']));
-            $remaining_days = $interval->days;
+                $interval = $current_date->diff($time);
+                $remaining_days = $interval->days;
+            }
+
 
             $expiry_time_str = jdate($info['end_date']);
         }
