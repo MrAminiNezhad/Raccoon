@@ -38,22 +38,37 @@ function client_info(array $info, string $type)
 
 
 
-        if ($info['message'] === "Not Exist User") {
+        if ($info[1]['message'] === "Not Exist User") {
             include __DIR__ . '/notfound.html';
             die;
         }
         $info = $info[0];
         $config_status = $info['status'] == 'active' ? '🟢' : '🔴';
-        $total = number_format($info['traffic'] / 1024, 2);
+
+        if ($info['traffic'] ==  0) {
+            $total = "♾️";
+            $remaning_traffic  = "♾️";
+        } else {
+
+            $total = number_format($info['traffic'] / 1024, 2);
+            $remaning_traffic =  number_format(($info['traffic'] - $info['traffics'][0]['total']) / 1024, 2);
+        }
+
+
+
         $down = number_format($info['traffics'][0]['download'] / 1024, 2);
         $up = number_format($info['traffics'][0]['upload'] / 1024, 2);
-        $remaning_traffic =  number_format(($info['traffic'] - $info['traffics'][0]['total']) / 1024, 2);
 
+        if ($info['end_date'] === null) {
+            $expiry_time_str = "♾️";
+            $remaining_days  = "♾️";
+        } else {
 
-        $interval = $current_date->diff(new DateTime($info['end_date']));
-        $remaining_days = $interval->days;
+            $interval = $current_date->diff(new DateTime($info['end_date']));
+            $remaining_days = $interval->days;
 
-        $expiry_time_str = jdate($info['end_date']);
+            $expiry_time_str = jdate($info['end_date']);
+        }
     } else {
 
         if ($info['obj'] === null) {
@@ -63,17 +78,14 @@ function client_info(array $info, string $type)
         $up = number_format($info['obj']['up'] / (1024 * 1024 * 1024), 2);
         $down = number_format($info['obj']['down'] / (1024 * 1024 * 1024), 2);
         $total = number_format($info['obj']['total'] / (1024 * 1024 * 1024), 2);
-        $total2 = number_format($info['obj']['total'] / (1024 * 1024 * 1024), 2);
-        if ($total == 0) {
-            $total = "نامحدود ";
-        } else {
-            $total = number_format($info['obj']['total'] / (1024 * 1024 * 1024), 2);
-        }
+
+        $total = number_format($info['obj']['total'] / (1024 * 1024 * 1024), 2);
+
 
 
         $expiry_time = $info['obj']['expiryTime'];
-        if ($expiry_time === 0) {
-            $expiry_time_str = "نامحدود ";
+        if ($expiry_time == 0) {
+            $expiry_time_str = "♾️";
         } else {
             $expiry_datetime = new DateTime();
             $expiry_datetime->setTimestamp($expiry_time / 1000);
@@ -83,20 +95,20 @@ function client_info(array $info, string $type)
         }
 
         $total_traffic = $up + $down;
-        $expiry_date = $expiry_datetime;
 
         $remaning_traffic = $total - $total_traffic;
-        if ($total2 <= 0) {
-            $remaning_traffic = "نامحدود ";
+
+        if ($total <= 0) {
+            $total = '♾️';
+            $remaning_traffic = "♾️";
         } else {
             $remaning_traffic = number_format($remaning_traffic, 2);
         }
 
-        $interval = $current_date->diff($expiry_date);
-        $remaining_days = $interval->days;
+
 
         if ($expiry_time === 0) {
-            $remaining_days = "نامحدود ";
+            $remaining_days = "♾️";
         } else {
             $interval = $current_date->diff($expiry_date);
             $remaining_days = $interval->days;
