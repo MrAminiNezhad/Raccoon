@@ -37,8 +37,7 @@ function client_info(array $info, string $type)
     if ($type === 'xpanel') {
 
 
-
-        if ($info[1]['message'] === "Not Exist User") {
+        if (isset($info['message'])) {
             include __DIR__ . '/notfound.html';
             die;
         }
