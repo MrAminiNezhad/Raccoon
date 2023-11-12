@@ -13,10 +13,9 @@ return [
     'download' => 'دانلود',
     'total' => 'حجم کلی',
     'linkdownload' => 'دانلود برنامه های کاربردی',
-    'baghimande' => 'حجم باقی ',
+    'baghimande' => 'حجم باقی مانده',
     'total_traffic' => 'میزان مصرف',
     'expiry_date' => 'تاریخ انقضا',
     'remaining_days' => 'روز مانده',
     'select_lang' => 'انتخاب زبان',
 ];
-?>
