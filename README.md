@@ -25,6 +25,17 @@ To install, simply download the project files and transfer them to your hosting.
 Supported types: sanaei, alireza,xpanel <br>
 Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the info.php file instead of Your ID.
 
+# Video installation tutorial
+<div align="center">
+To install on the server with the help of aapanel by the dear team <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
+  
+[![Raccoon web panel ](https://i.ibb.co/zbpn98M/Capture2.jpg)](https://www.youtube.com/watch?v=vOOWTY5E-wo "Raccoon web panel - Click to Watch!")<br><br>
+  
+To be installed on the host by our dear friend <a href="https://www.youtube.com/@iAghapour"> Iman Aghapour </a> <br> <br>
+
+[![Raccoon web panel ](https://i.ibb.co/Tv4KKDP/Capture.jpg)](https://www.youtube.com/watch?v=gEJ4hVMzIVM&t=7s "Raccoon web panel - Click to Watch!")<br>
+</div>
+
 # Preview
 
 <div align="center"><img src="https://raw.githubusercontent.com/MrAminiNezhad/Raccoon/main/demo/Raccoon_demo (1).png" width="700"></div>
@@ -33,6 +44,7 @@ Then, to activate the online chat, enter the crisp.chat site and become a member
 # Thanks To
 
 <a href="https://github.com/ILYAGVC"> ILYAGVC </a> <br>
+<a href="https://github.com/thezass/"> Thezass </a> <br>
 <a href="https://github.com/alirezax5"> alirezax5 </a>
 
 # Donation
