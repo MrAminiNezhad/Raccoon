@@ -75,8 +75,8 @@ if (strlen($crisp) >= 20) {
         <div class="row">
           <div class="footer-bar-content w-100">
             <p><?php echo $lang['select_lang']; ?>  
-            <a href="?lang=fa">ðŸ‡®ðŸ‡·</a>
-            <a href="?lang=en">ðŸ‡ºðŸ‡¸</a>
+            <a href="?lang=fa">🇮🇷</a>
+            <a href="?lang=en">🇺🇸</a>
            </p>
             <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> Â© 2023. All Rights Reserved.</p>
           </div>
