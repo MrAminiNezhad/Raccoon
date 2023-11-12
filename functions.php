@@ -115,10 +115,10 @@ function client_info(array $info, string $type)
         if ($expiry_time === 0) {
             $remaining_days = "♾️";
         } else {
-            $interval = $current_date->diff($expiry_date);
+            $interval = $current_date->diff($expiry_datetime);
             $remaining_days = $interval->days;
 
-            if ($remaining_days <= 0 || $expiry_date < new DateTime()) {
+            if ($remaining_days <= 0 || $expiry_datetime < new DateTime()) {
                 $remaining_days = 0;
             }
         }
