@@ -1,5 +1,6 @@
 <?php
 
+ main
 function url_encode_full($value)
 {
     return implode("", array_map(function ($i) {
@@ -141,4 +142,10 @@ function client_info(array $info, string $type)
         'remaining_days' => $remaining_days,
         'expire_time' => $expiry_time_str
     ];
+
+     error_reporting(E_ERROR);
+
+function url_encode_full ($value) {
+     return implode("", array_map(function($i) { return sprintf("%%%X", ord($i)); }, str_split($value)));
+ main
 }

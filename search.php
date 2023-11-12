@@ -1,9 +1,74 @@
 <?php
+ main
 require_once  __DIR__ . '/functions.php';
 $panel = require  __DIR__ .  '/info.php';
 require_once __DIR__ . '/jdf.php';
 $crisp = $panel['crisp'];
 $cookie_file = '.cookies.txt';
+
+
+   error_reporting(E_ERROR);
+
+   require_once 'functions.php';
+   $panel = require 'info.php';
+   $crisp = $panel['crisp'];
+   $cookie_file = '.cookies.txt';
+   function run_login_script($panel, $cookie_file)
+   {
+       $url = $panel['panel_url'] . 'login';
+       $data = ['username' => $panel['panel_user'], 'password' => $panel['panel_pass']];
+   
+       $ch = curl_init($url);
+       curl_setopt($ch, CURLOPT_POST, true);
+       curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+       curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+   
+       $response = curl_exec($ch);
+   
+       if ($response === false) die("خطا در اجرای مرحله ورود به پنل: " . curl_error($ch));
+   
+       curl_close($ch);
+   }
+   
+   $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
+   if (isset($_GET['id']))
+   {
+       $search_query = $_GET['id'];
+       $search_query_encoded = url_encode_full($search_query);
+       run_login_script($panel, $cookie_file);
+       $FinalpanelUrlArr = ['sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded, 'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded];
+       if ($panel['type'] != 'sanaei' && $panel['type'] != 'alireza') die("مقدار type نامعتبر است.");
+   
+       $final_url = $FinalpanelUrlArr[$panel['type']];
+   
+       $ch = curl_init($final_url);
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+       curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+   
+       $response = curl_exec($ch);
+   
+       if ($response === false) die("خطا در اجرای مرحله جستجو: " . curl_error($ch));
+       $json_response = json_decode($response, true);
+       if (!$json_response) die("خطا در تحلیل پاسخ JSON");
+   
+       $up = number_format($json_response['obj']['up'] / (1024 * 1024 * 1024) , 2);
+       $down = number_format($json_response['obj']['down'] / (1024 * 1024 * 1024) , 2);
+       $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+       $total2 = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+       if ($total == 0)
+       {
+           $total = "نامحدود ";
+       }
+       else
+       {
+           $total = number_format($json_response['obj']['total'] / (1024 * 1024 * 1024) , 2);
+       }
+ main
 
 
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
