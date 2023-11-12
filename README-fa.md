@@ -22,13 +22,17 @@
 type های پشتیبانی شده: sanaei, alireza,xpanel <br>
 سپس برای فعال کردن چت آنلاین وارد سایت crisp.chat شوید و عضو شوید پس از گذراندن مراحل عضویت و ورود به صفحه اول روی چرخ دنده پایین صفحه بزنید و سپس گزینه اول account را انتخاب بکنید و بعد وارد بخش Website Settings شود در این بخش جلوی اسم سایتتان روی settings بزنید و گزینه Setup instructions بزنید و Website ID را کپی و در فایل info.php به جای Your ID وارد نمایید.
 
-# آموزش تصویری 
+# آموزش تصویری
+
 <div align="center">
 جهت نصب بر روی سرور با کمک aapanel توسط تیم عزیز <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
-[![Raccoon web panel ](https://i.ibb.co/zbpn98M/Capture2.jpg)](https://www.youtube.com/watch?v=vOOWTY5E-wo "Raccoon web panel - Click to Watch!")<br><br>
+
+[![Raccoon web panel ](https://i.ibb.co/zbpn98M/Capture2.jpg)](https://www.youtube.com/watch?v=vOOWTY5E-wo "Raccoon web panel - Click to Watch!")
+<br><br>
 جهت نصب بر روی هاست توسط دوست عزیزمون <a href="https://www.youtube.com/@iAghapour"> ایمان آقاپور </a> <br> <br>
 
 [![Raccoon web panel ](https://i.ibb.co/Tv4KKDP/Capture.jpg)](https://www.youtube.com/watch?v=gEJ4hVMzIVM&t=7s "Raccoon web panel - Click to Watch!")<br>
+
 </div>
 
 # پیش نمایش
