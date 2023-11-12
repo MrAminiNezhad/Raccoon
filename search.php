@@ -11,15 +11,21 @@ if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
    $search_query_encoded = url_encode_full($search_query);
 
-   $final_url =  match ($panel['type']) {
+   $final_url =  [
       'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded,
 
       'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded,
 
       'xpanel' => $panel['panel_url'] . "api/{$panel['api-key']}/user/" . $search_query_encoded,
 
-      default =>  throw new Exception('wrong panel type')
-   };
+   ];
+
+   if (isset($final_url[$panel['type']])) {
+      $final_url = $final_url[$panel['type']];
+   } else {
+      throw new Exception('wrong panel type');
+   }
+
 
    if ($panel['type'] !== 'xpanel') run_login_script($panel, $cookie_file);
 
