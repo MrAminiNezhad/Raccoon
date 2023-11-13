@@ -1,11 +1,12 @@
 <?php
 
 // run this with cronjob every 1 day , 10 hours depends on your usage
+// every time you run cron.php it updates list of client of servers 
+
 require __DIR__ . '/config.php';
 require __DIR__ . '/static/functions.php';
 
 $db->drop('user');
-
 $db->create('user', [
     'username' => 'TEXT',
     'status' => 'BOOLEAN',

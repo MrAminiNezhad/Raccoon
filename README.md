@@ -26,6 +26,8 @@ To install, simply download the project files and transfer them to your hosting.
 Supported types: sanaei, alireza,xpanel <br>
 Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the config.php file instead of Your ID.
 
+run cron.php with cronjob or systemd on server every 4 hours or every 1 day or every time depends on your needs
+
 # Video installation tutorial
 
 <div align="center">
