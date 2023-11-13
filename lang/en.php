@@ -2,7 +2,7 @@
 return [
     'title_serch_page' => 'Search Results | Raccoon',
     'title_index_page' => 'Service Information | Raccoon',
-    'search_bar' => 'Enter your username',
+    'search_bar' => 'Enter your username or config',
     'button_search' => 'Search',
     'config_name' => 'Config Name',
     'gb' => 'Gigabytes',
@@ -19,4 +19,3 @@ return [
     'remaining_days' => 'Days Left',
     'select_lang' => 'Select language',
 ];
-?>
