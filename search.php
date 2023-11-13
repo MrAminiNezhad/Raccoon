@@ -1,9 +1,8 @@
 <?php
-require_once  __DIR__ . '/functions.php';
-$panel = require  __DIR__ .  '/info.php';
-require_once __DIR__ . '/jdf.php';
+require_once  __DIR__ . '/static/functions.php';
+$panel = require  __DIR__ .  '/config.php';
+require_once __DIR__ . '/static/jdf.php';
 $crisp = $panel['crisp'];
-$cookie_file = '.cookies.txt';
 
 
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
@@ -11,41 +10,7 @@ if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
    $search_query_encoded = url_encode_full($search_query);
 
-   $final_url =  [
-      'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/getClientTraffics/' . $search_query_encoded,
-
-      'alireza' => $panel['panel_url'] . 'xui/API/inbounds/getClientTraffics/' . $search_query_encoded,
-
-      'xpanel' => $panel['panel_url'] . "api/{$panel['api-key']}/user/" . $search_query_encoded,
-
-   ];
-
-   if (isset($final_url[$panel['type']])) {
-      $final_url = $final_url[$panel['type']];
-   } else {
-      throw new Exception('wrong panel type');
-   }
-
-
-   if ($panel['type'] !== 'xpanel') run_login_script($panel, $cookie_file);
-
-
-
-   $ch = curl_init($final_url);
-   if ($panel['type'] !== 'xpanel') curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
-
-   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
-   $response = curl_exec($ch);
-
-
-   if ($response === false) throw new Exception("error in search client" . curl_error($ch));
-   $info = json_decode($response, true);
-   if (!$info) throw new Exception("error in json result");
-
-   $client_info = client_info($info, $panel['type']);
+   $client_info = client_info($search_query);
 }
 session_start();
 
