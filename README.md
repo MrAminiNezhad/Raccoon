@@ -18,14 +18,16 @@ Raccoon is a web-based script that can be installed on various PHP hosting platf
 6- Display the remaining days <br>
 7- Display remaining traffic <br>
 8- Support for multiple languages <br>
+8- Support for using multi panels in one script <br>
 
 # Installation Guide
 
-To install, simply download the project files and transfer them to your hosting. Then, put your panel information in the info.php file. <br>
+To install, simply download the project files and transfer them to your hosting. Then, put your panel information in the config.php file. <br>
 Supported types: sanaei, alireza,xpanel <br>
-Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the info.php file instead of Your ID.
+Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the config.php file instead of Your ID.
 
 # Video installation tutorial
+
 <div align="center">
 To install on the server with the help of aapanel by the dear team <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
   
@@ -34,6 +36,7 @@ To install on the server with the help of aapanel by the dear team <a href="http
 To be installed on the host by our dear friend <a href="https://www.youtube.com/@iAghapour"> Iman Aghapour </a> <br> <br>
 
 [![Raccoon web panel ](https://i.ibb.co/Tv4KKDP/Capture.jpg)](https://www.youtube.com/watch?v=gEJ4hVMzIVM&t=7s "Raccoon web panel - Click to Watch!")<br>
+
 </div>
 
 # Preview
