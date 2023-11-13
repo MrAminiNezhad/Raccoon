@@ -1,11 +1,5 @@
 <?php
 
-function url_encode_full($value)
-{
-    return implode("", array_map(function ($i) {
-        return sprintf("%%%X", ord($i));
-    }, str_split($value)));
-}
 function run_login_script($panel, $cookie_file)
 {
     if (in_array($panel['type'], ['sanaei', 'alireza', 'xpanel']) === false) throw new Exception('wrong panel type');

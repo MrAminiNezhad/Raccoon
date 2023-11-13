@@ -8,7 +8,6 @@ $crisp = $panel['crisp'];
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
-   $search_query_encoded = url_encode_full($search_query);
 
    $client_info = client_info($search_query);
 }
