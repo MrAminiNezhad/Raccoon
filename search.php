@@ -9,8 +9,18 @@ $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['id'])) {
    $search_query = $_GET['id'];
 
-   $client_info = client_info($search_query);
+   $pattern = '/vless:\/\/([\w-]+)@([^:]+):(\d+)/';
+   if (preg_match($pattern, $search_query, $matches)) {
+
+      $uuid = $matches[1];
+      $client_info = client_info($search_query, $uuid = $uuid);
+   } else {
+
+      $client_info = client_info($search_query);
+   }
 }
+
+
 session_start();
 
 if (isset($_GET['lang'])) {
@@ -52,7 +62,7 @@ if (strlen($crisp) >= 20) {
       <div class="card" style="background-color: #2b34428a;border-radius: 15px;padding:10px;">
          <div class="card-body" style="display: flex;justify-content: space-between;padding-top: 25px">
             <h5 class="card-title name-conf"><?php echo $lang['config_name']; ?></h5>
-            <p class="card-text"><?php echo $search_query; ?> </p>
+            <p class="card-text"><?php echo $info = $uuid == null ? $search_query : $uuid ?> </p>
          </div>
       </div>
       <br>

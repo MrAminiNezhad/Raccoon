@@ -24,12 +24,16 @@ function run_login_script($panel, $cookie_file)
 }
 
 
-function client_info($username)
+function client_info($username = null, $uuid = null)
 {
 
     global $db;
+    if ($uuid !== null) {
+        $info = $db->select('user', '*', ['uuid' => $uuid])[0];
+    } else {
+        $info = $db->select('user', '*', ['username' => $username])[0];
+    }
 
-    $info = $db->select('user', '*', ['username' => $username])[0];
 
     if ($info == null) {
 
