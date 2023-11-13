@@ -9,6 +9,7 @@ require __DIR__ . '/static/functions.php';
 $db->drop('user');
 $db->create('user', [
     'username' => 'TEXT',
+    'uuid' => 'TEXT',
     'status' => 'BOOLEAN',
     'total_traffic' => 'INT',
     'download' => 'INT',
@@ -69,7 +70,6 @@ foreach ($panels as $panel) {
 
             foreach ($inbound["clientStats"] as $user) {
 
-
                 $total = $user['total'] / (1024 * 1024);
                 $up = $user['up'] / (1024 * 1024);
                 $down = $user['down'] / (1024 * 1024);
@@ -77,8 +77,16 @@ foreach ($panels as $panel) {
 
                 $expire_time = $user['expiryTime'] == 0  ? 0 : date('Y-m-d H:i:s', $expiry_time = $user['expiryTime'] / 1000);
 
+                foreach (json_decode($inbound['settings'], true)['clients'] as $user_conf) {
+                    if ($user_conf['email'] == $user['email']) {
+                        $id = $user_conf['id'];
+                        break;
+                    }
+                }
+
                 $db->insert('user', [
                     'username' => $user['email'],
+                    'uuid' => $id,
                     'status' => $user['enable'],
                     'total_traffic' => $total,
                     'download' => $down,
