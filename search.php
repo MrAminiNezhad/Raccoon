@@ -14,6 +14,9 @@ if (isset($_GET['id'])) {
 
       $uuid = $matches[1];
       $client_info = client_info($search_query, $uuid = $uuid);
+   } else if (strpos($search_query, 'vmess') !== false) {
+      $uuid = json_decode(base64_decode(str_replace('vmess://', '', $search_query)), true)['id'];
+      $client_info = client_info($search_query, $uuid = $uuid);
    } else {
 
       $client_info = client_info($search_query);
