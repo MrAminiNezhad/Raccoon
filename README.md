@@ -28,6 +28,8 @@ Then, to activate the online chat, enter the crisp.chat site and become a member
 
 run cron.php with cronjob or systemd on server every 4 hours or every 1 day or every time depends on your needs
 
+* Requires Apache web server
+
 # Video installation tutorial
 
 <div align="center">
