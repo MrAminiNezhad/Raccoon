@@ -87,7 +87,7 @@ foreach ($panels as $panel) {
                 $db->insert('user', [
                     'username' => $user['email'],
                     'uuid' => $id,
-                    'status' => $user['enable'],
+                    'status' => $expire_time,
                     'total_traffic' => $total,
                     'download' => $down,
                     'upload' => $up,
