@@ -26,7 +26,7 @@ foreach ($panels as $panel) {
     $final_url =  [
         'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/list',
 
-        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/list',
+        'alireza' => $panel['panel_url'] . 'xui/API/inbounds/',
 
         'xpanel' => $panel['panel_url'] . "api/{$panel['api-key']}/listuser",
     ];
