@@ -42,6 +42,16 @@ $panels = [
         "api-key" => '', // for xpanel only
         "crisp" => "Your ID"
     ],
+/*
+    [
 
+        "panel_url" => "https://panel.com:2020/",
+        "type" => "sanaei", // choose type between  [sanaei,alireza,xpanel]
+        "user" => "admin",
+        "pass" => "admin",
+        "api-key" => '', // for xpanel only
+        "crisp" => "Your ID"
+    ],
+    */
     // add a list just like this for multi panels
 ];
