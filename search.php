@@ -1,8 +1,8 @@
 <?php
 require_once  __DIR__ . '/static/functions.php';
-$panel = require  __DIR__ .  '/config.php';
 require_once __DIR__ . '/static/jdf.php';
-$crisp = $panel['crisp'];
+require  __DIR__ .  '/config.php';
+
 
 
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
@@ -34,9 +34,15 @@ if (isset($_GET['lang'])) {
 }
 
 $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
+ main
+$crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
+if (strlen($crisp) >= 20) {
+   $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
+
 
 if (strlen($crisp) >= 20) {
     $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$panel['crisp']}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
+ main
 } else {
     $crisp_script = ""; 
 }
