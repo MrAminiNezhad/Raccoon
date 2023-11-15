@@ -79,7 +79,3 @@ $HTTP["url"] =~ "^/(.db.db|.cookie.txt)$" {
 جهت حمایت از پروژه و ارائه بروز رسانی های بیشتر از پروژه حمایت بکنید <br>
 Trx Wallet: TQhwK6q94GgpUZSsHBjiUWc6xAHz5Df9mW
 <br>
-
-```
-
-```
