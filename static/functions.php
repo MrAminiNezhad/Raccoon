@@ -95,7 +95,7 @@ function update_users()
                     $down = $user['down'] / (1024 * 1024);
 
 
-                    $expire_time = $user['expiryTime'] == 0  ? 0 : date('Y-m-d H:i:s', $expiry_time = $user['expiryTime'] / 1000);
+                    $expire_time = $user['expiryTime'] == 0  ? 0 : date('Y-m-d H:i:s', $user['expiryTime'] / 1000);
 
 
 
@@ -109,7 +109,7 @@ function update_users()
                     $db->insert('user', [
                         'username' => $user['email'],
                         'uuid' => $id ?? null,
-                        'status' => $expire_time,
+                        'status' => $user['enable'],
                         'total_traffic' => $total,
                         'download' => $down,
                         'upload' => $up,
@@ -161,7 +161,7 @@ function client_info($username = null, $uuid = null)
 
 
 
-    $config_status = $info['status'] == true ? 'غیر فعال 🔴' : 'فعال 🟢';
+    $config_status = $info['status'] == true ? 'فعال 🟢' : 'غیر فعال 🔴';
 
     if ($info['total_traffic'] ==  0) {
         $total = "♾️";

@@ -1,0 +1,8 @@
+<Files ".db.db">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files ".cookie.txt">
+    Order Allow,Deny
+    Deny from all
+</Files>
