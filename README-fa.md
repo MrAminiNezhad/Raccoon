@@ -23,6 +23,33 @@
 type های پشتیبانی شده: sanaei, alireza,xpanel <br>
 سپس برای فعال کردن چت آنلاین وارد سایت crisp.chat شوید و عضو شوید پس از گذراندن مراحل عضویت و ورود به صفحه اول روی چرخ دنده پایین صفحه بزنید و سپس گزینه اول account را انتخاب بکنید و بعد وارد بخش Website Settings شود در این بخش جلوی اسم سایتتان روی settings بزنید و گزینه Setup instructions بزنید و Website ID را کپی و در فایل config.php به جای Your ID وارد نمایید.
 
+# افزایش امنیت
+
+## برای وب سرور های apache و litespeed (هاست های cpanel)
+
+فقط باید فایل .htaccess در دایرکتوری اصلی اسکریپت باشد
+
+## برای nginx
+
+```nginx
+location = ^/(.db.db|.cookie.txt)$ {
+ # Deny access to the db.db file
+ deny all;
+ # Optionally, you can specify a fallback page or redirect
+ # error_page 403 /path/to/fallback-page.html;
+ # or
+ # return 403;
+}
+```
+
+## برای lighttpd
+
+```lighttpd
+$HTTP["url"] =~ "^/(.db.db|.cookie.txt)$" {
+    url.access-deny = ( "" )
+}
+```
+
 # آموزش تصویری
 
 <div align="center">
@@ -52,3 +79,7 @@ type های پشتیبانی شده: sanaei, alireza,xpanel <br>
 جهت حمایت از پروژه و ارائه بروز رسانی های بیشتر از پروژه حمایت بکنید <br>
 Trx Wallet: TQhwK6q94GgpUZSsHBjiUWc6xAHz5Df9mW
 <br>
+
+```
+
+```

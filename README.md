@@ -26,13 +26,39 @@ To install, simply download the project files and transfer them to your hosting.
 Supported types: sanaei, alireza,xpanel <br>
 Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the config.php file instead of Your ID.
 
+# security options
+
+## for apache and litespeed just keep .htaccess file in directory of script
+
+## for nginx
+
+```nginx
+location = ^/(.db.db|.cookie.txt)$ {
+ # Deny access to the db.db file
+ deny all;
+ # Optionally, you can specify a fallback page or redirect
+ # error_page 403 /path/to/fallback-page.html;
+ # or
+ # return 403;
+}
+```
+
+## for lighttpd
+
+```lighttpd
+$HTTP["url"] =~ "^/(.db.db|.cookie.txt)$" {
+    url.access-deny = ( "" )
+}
+
+```
+
 # Video installation tutorial
 
 <div align="center">
 To install on the server with the help of aapanel by the dear team <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
-  
+
 [![Raccoon web panel ](https://i.ibb.co/zbpn98M/Capture2.jpg)](https://www.youtube.com/watch?v=vOOWTY5E-wo "Raccoon web panel - Click to Watch!")<br><br>
-  
+
 To be installed on the host by our dear friend <a href="https://www.youtube.com/@iAghapour"> Iman Aghapour </a> <br> <br>
 
 [![Raccoon web panel ](https://i.ibb.co/Tv4KKDP/Capture.jpg)](https://www.youtube.com/watch?v=gEJ4hVMzIVM&t=7s "Raccoon web panel - Click to Watch!")<br>
@@ -53,3 +79,7 @@ To be installed on the host by our dear friend <a href="https://www.youtube.com/
 # Donation
 
 Trx Wallet: TQhwK6q94GgpUZSsHBjiUWc6xAHz5Df9mW
+
+```
+
+```
