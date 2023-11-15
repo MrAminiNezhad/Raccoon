@@ -56,3 +56,15 @@ $panels = [
     */
     // add a list just like this for multi panels
 ];
+
+$db->create('user', [
+    'username' => 'TEXT',
+    'uuid' => 'TEXT',
+    'status' => 'BOOLEAN',
+    'total_traffic' => 'INT',
+    'download' => 'INT',
+    'upload' => 'INT',
+    'expire_time' => 'TIMESTAMP'
+]);
+
+$db->create('data_time', ['data_time' => 'TIMESTAMP']);

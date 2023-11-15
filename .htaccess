@@ -1,8 +1,0 @@
-<Files "db.db">
-    Order Allow,Deny
-    Deny from all
-</Files>
-<Files "config.php">
-    Order Allow,Deny
-    Deny from all
-</Files

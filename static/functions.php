@@ -24,10 +24,126 @@ function run_login_script($panel, $cookie_file)
 }
 
 
+function update_users()
+{
+    global $db, $panels;
+
+
+
+
+    $db->delete('user', []);
+    $db->delete('data_time', []);
+
+    $db->insert('data_time', ['data_time' => $db->raw('CURRENT_TIMESTAMP')]);
+
+
+    foreach ($panels as $panel) {
+
+
+        run_login_script($panel, '.cookie.txt');
+
+        $final_url =  [
+            'sanaei' => $panel['panel_url'] . 'panel/api/inbounds/list',
+
+            'alireza' => $panel['panel_url'] . 'xui/API/inbounds/',
+
+            'xpanel' => $panel['panel_url'] . "api/{$panel['api-key']}/listuser",
+        ];
+
+        $ch = curl_init($final_url[$panel['type']]);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        if ($panel['type'] !== 'xpanel') curl_setopt($ch, CURLOPT_COOKIEFILE, '.cookie.txt');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+        $response = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+
+        unlink('.cookie.txt');
+
+        if ($panel['type'] == 'xpanel') {
+            foreach ($response as $user) {
+
+
+
+                $config_status = $user['status'] == 'active' ? true : false;
+
+
+                $expire_time = $user['end_date'] == null ? 0 : $user['end_date'];
+
+                $db->insert('user', [
+                    'username' => $user['username'],
+                    'status' => $config_status,
+                    'total_traffic' => $user['traffic'],
+                    'download' => $user['traffics'][0]['download'],
+                    'upload' => $user['traffics'][0]['upload'],
+                    'expire_time' => $expire_time
+                ]);
+            }
+        } else {
+
+
+            foreach ($response['obj'] as $inbound) {
+
+
+
+                foreach ($inbound["clientStats"] as $user) {
+
+                    $total = $user['total'] / (1024 * 1024);
+                    $up = $user['up'] / (1024 * 1024);
+                    $down = $user['down'] / (1024 * 1024);
+
+
+                    $expire_time = $user['expiryTime'] == 0  ? 0 : date('Y-m-d H:i:s', $expiry_time = $user['expiryTime'] / 1000);
+
+
+
+                    foreach (json_decode($inbound['settings'], true)['clients'] as $user_conf) {
+                        if ($user_conf['email'] == $user['email']) {
+                            $id = $user_conf['id'];
+                            break;
+                        }
+                    }
+
+                    $db->insert('user', [
+                        'username' => $user['email'],
+                        'uuid' => $id ?? null,
+                        'status' => $expire_time,
+                        'total_traffic' => $total,
+                        'download' => $down,
+                        'upload' => $up,
+                        'expire_time' => $expire_time
+                    ]);
+                }
+            }
+        }
+    }
+}
+
 function client_info($username = null, $uuid = null)
 {
 
     global $db;
+
+    $current_date = new DateTime();
+
+
+    $data_time = $db->select('data_time', 'data_time')[0];
+
+    if ($data_time == null) {
+        update_users();
+    } else {
+        $data_time = new DateTime($data_time);
+
+
+        $minutesDifference = ($current_date->getTimestamp() - $data_time->getTimestamp()) / 60;
+        if ($minutesDifference > 5 || $data_time == null) update_users();
+    }
+
+
+
+
     if ($uuid !== null) {
         $info = $db->select('user', '*', ['uuid' => $uuid])[0];
     } else {
@@ -45,7 +161,6 @@ function client_info($username = null, $uuid = null)
 
 
 
-    $current_date = new DateTime();
     $config_status = $info['status'] == true ? '🟢' : '🔴';
 
     if ($info['total_traffic'] ==  0) {
