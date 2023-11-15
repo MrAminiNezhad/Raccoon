@@ -32,7 +32,13 @@ $db = new Medoo([
 
 ]);
 
+ main
 $crisp = "Your ID"; // crisp id
+
+return [
+    "crisp" => "API" // Your crisp API
+];
+ main
 
 $panels = [
 
@@ -42,7 +48,11 @@ $panels = [
         "type" => "sanaei", // choose type between  [sanaei,alireza,xpanel]
         "user" => "admin",
         "pass" => "admin",
-        "api-key" => '', // for xpanel only
+ main
+       "api-key" => '', // for xpanel only
+
+        "api-key" => '' // for xpanel only
+ main
     ],
     /*
     [
@@ -51,7 +61,11 @@ $panels = [
         "type" => "sanaei", // choose type between  [sanaei,alireza,xpanel]
         "user" => "admin",
         "pass" => "admin",
+ main
         "api-key" => '', // for xpanel only
+
+        "api-key" => '' // for xpanel only
+ main
     ],
     */
     // add a list just like this for multi panels
