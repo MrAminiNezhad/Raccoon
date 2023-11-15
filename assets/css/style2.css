@@ -1,10 +1,12 @@
 @font-face {
-font-family: Yekan;
-src: url('../fonts/Yekan.woff');
-src: url('Yekan.woff?#iefix') format('embedded-opentype'),
-url('Yekan.woff') format('woff'),
-url('Yekan.ttf') format('truetype');
-font-weight: normal;
+ font-family: Yekan;
+ src: url('../fonts/Yekan.woff');
+ src: url('../fonts/Yekan.ttf');
+ font-weight: normal;
+}
+body {
+ background-color: #171d34;
+ font-family: "Yekan";
 }
 body {
     font-family: Yekan !important;
@@ -108,7 +110,7 @@ a {
     text-align: center;
     line-height: 2;
     color: #fff;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .flex-item1
