@@ -138,7 +138,7 @@ function client_info($username = null, $uuid = null)
 
 
         $minutesDifference = ($current_date->getTimestamp() - $data_time->getTimestamp()) / 60;
-        if ($minutesDifference > 5 || $data_time == null) update_users();
+        if ($minutesDifference > 5) update_users();
     }
 
 
