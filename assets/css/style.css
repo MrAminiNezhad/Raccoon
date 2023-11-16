@@ -1,5 +1,11 @@
+@font-face {
+ font-family: Vazirmatn;
+ src: url('../fonts/Vazirmatn.woff');
+ src: url('../fonts/Vazirmatn.ttf');
+ font-weight: normal;
+}
 body {
-  font-family: 'Yekan', Yekan;
+  font-family: 'Vazirmatn', Vazirmatn;
   background-color: #171d34;
 }
 :root {
@@ -194,15 +200,4 @@ li a:hover {
 .button:focus{
   border:1px solid #4885ed;
   padding: 9px 19px;
-}
-
-@font-face {
- font-family: Yekan;
- src: url('../fonts/Yekan.woff');
- src: url('../fonts/Yekan.ttf');
- font-weight: normal;
-}
-body {
- background-color: #171d34;
- font-family: "Yekan";
 }
