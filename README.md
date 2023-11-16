@@ -18,7 +18,8 @@ Raccoon is a web-based script that can be installed on various PHP hosting platf
 6- Display the remaining days <br>
 7- Display remaining traffic <br>
 8- Support for multiple languages <br>
-8- Support for using multi panels in one script <br>
+9- Online chat feature<br>
+10- Support for using multi panels in one script <br>
 
 # Installation Guide
 
