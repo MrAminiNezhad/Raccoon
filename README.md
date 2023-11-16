@@ -79,7 +79,3 @@ To be installed on the host by our dear friend <a href="https://www.youtube.com/
 # Donation
 
 Trx Wallet: TQhwK6q94GgpUZSsHBjiUWc6xAHz5Df9mW
-
-```
-
-```
