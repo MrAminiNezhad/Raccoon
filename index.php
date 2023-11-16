@@ -2,8 +2,8 @@
 
 error_reporting(E_ERROR);
 
-$panel = require  __DIR__ . '/config.php';
-$crisp = $panel['crisp'];
+require_once __DIR__ . '/static/jdf.php';
+require  __DIR__ .  '/config.php';
 
 session_start();
 
@@ -11,9 +11,9 @@ $selected_language = isset($_GET['lang']) ? $_SESSION['selected_language'] = $_G
 
 $lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
 if (strlen($crisp) >= 20) {
-    $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$panel['crisp']}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
+   $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
 } else {
-    $crisp_script = ""; 
+   $crisp_script = "";
 }
 ?>
 <html>
@@ -77,10 +77,10 @@ if (strlen($crisp) >= 20) {
       <div class="row">
         <div class="footer-bar-content w-100">
           <p><?php echo $lang['select_lang']; ?>
-            <a href="?lang=fa">🇮🇷</a>
-            <a href="?lang=en">🇺🇸</a>
+            <a href="?lang=fa">ðŸ‡®ðŸ‡·</a>
+            <a href="?lang=en">ðŸ‡ºðŸ‡¸</a>
           </p>
-          <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> © 2023. All Rights Reserved.</p>
+          <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> Â© 2023. All Rights Reserved.</p>
         </div>
       </div>
     </div>
