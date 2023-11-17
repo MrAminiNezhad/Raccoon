@@ -58,7 +58,7 @@ $HTTP["url"] =~ "^/(.db.db|.cookie.txt)$" {
 <div align="center">
 To install on the server with the help of aapanel by the dear team <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
 
-[![Raccoon web panel ](https://i.ibb.co/K9j8cnm/photo-2023-11-17-18-41-03.jpg)](https://www.youtube.com/watch?v=ci_APcSKmfY"Raccoon web panel - Click to Watch!")
+[![Raccoon web panel ](https://i.ibb.co/K9j8cnm/photo-2023-11-17-18-41-03.jpg)](https://www.youtube.com/watch?v=ci_APcSKmfY "Raccoon web panel - Click to Watch!")
 
 
 </div>
