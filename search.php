@@ -34,6 +34,7 @@ if (strlen($crisp) >= 20) {
 <html dir="rtl">
 
 <head>
+   <link rel="shortcut icon" href="assets/images/raccoon.ico">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta charset="UTF-8">
    <title><?php echo $lang['title_serch_page']; ?></title>

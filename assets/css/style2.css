@@ -55,6 +55,7 @@ width: 50%
 }
 .card-title {
     color: #dad7cd;
+    font-size: 17px;
 }
 .card-text {
     color: #d5bdaf;
@@ -69,6 +70,7 @@ width: 50%
     color: #dad7cd;
     margin-right: 15px;
     text-decoration: none;
+    font-size: 15px;
 }
 .accordion {
     background-color: #1b1e21;
@@ -168,4 +170,3 @@ input[type=text] {
     fill: #90a955;
     cursor: pointer;
 }
-

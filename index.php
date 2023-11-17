@@ -19,12 +19,12 @@ if (strlen($crisp) >= 20) {
 <html>
 
 <head>
+  <link rel="shortcut icon" href="assets/images/raccoon.ico">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $lang['title_index_page']; ?></title>
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
@@ -82,7 +82,7 @@ if (strlen($crisp) >= 20) {
             <a href="?lang=fa">🇮🇷</a>
             <a href="?lang=en">🇺🇸</a>
           </p>
-          <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> Â© 2023. All Rights Reserved.</p>
+          <p class="text-size-16 mb-0">Coded By<a href="https://github.com/MrAminiNezhad">MrAminiNezhad</a> Ã‚Â© 2023. All Rights Reserved.</p>
         </div>
       </div>
     </div>
