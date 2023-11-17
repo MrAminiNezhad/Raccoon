@@ -6,21 +6,11 @@ require  __DIR__ .  '/config.php';
 
 
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
-if (isset($_GET['id'])) {
-   $search_query = $_GET['id'];
+if (isset($_GET['username'])) {
+   $client_info =  client_info($_GET['username']);
+} else if (isset($_GET['uuid'])) {
 
-   $pattern = '/vless:\/\/([\w-]+)@([^:]+):(\d+)/';
-   if (preg_match($pattern, $search_query, $matches)) {
-
-      $uuid = $matches[1];
-      $client_info = client_info($search_query, $uuid = $uuid);
-   } else if (strpos($search_query, 'vmess') !== false) {
-      $uuid = json_decode(base64_decode(str_replace('vmess://', '', $search_query)), true)['id'];
-      $client_info = client_info($search_query, $uuid = $uuid);
-   } else {
-
-      $client_info = client_info($search_query);
-   }
+   $client_info = client_info(null, $_GET['uuid']);
 }
 
 
@@ -50,8 +40,7 @@ if (strlen($crisp) >= 20) {
    <link href="assets/css/style2.css" rel="stylesheet" type="text/css">
    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-   <script src="assets/js/jquery-3.5.1.slim.min.js">
-   </script>
+   <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
    <script src="assets/js/popper.min.js"></script>
 </head>
 
