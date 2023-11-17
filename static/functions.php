@@ -107,7 +107,7 @@ function update_users()
                     }
 
                     $db->insert('user', [
-                        'username' => $user['email'],
+                        'username' => strtolower($user['email']),
                         'uuid' => $id ?? null,
                         'status' => $user['enable'],
                         'total_traffic' => $total,
@@ -147,7 +147,8 @@ function client_info($username = null, $uuid = null)
     if ($uuid !== null) {
         $info = $db->select('user', '*', ['uuid' => $uuid])[0];
     } else {
-        $info = $db->select('user', '*', ['username' => $username])[0];
+
+        $info = $db->select('user', '*', ['username' => strtolower($username)])[0];
     }
 
 
