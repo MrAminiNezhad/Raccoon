@@ -55,11 +55,8 @@ $HTTP["url"] =~ "^/(.db.db|.cookie.txt)$" {
 <div align="center">
 جهت نصب بر روی سرور با کمک aapanel توسط تیم عزیز <a href="https://www.youtube.com/@sixtininelearn"> SIXTININE LERN </a> <br> <br> <br>
 
-[![Raccoon web panel ](https://i.ibb.co/zbpn98M/Capture2.jpg)](https://www.youtube.com/watch?v=vOOWTY5E-wo "Raccoon web panel - Click to Watch!")
+[![Raccoon web panel ](https://i.ibb.co/K9j8cnm/photo-2023-11-17-18-41-03.jpg)](https://www.youtube.com/watch?v=ci_APcSKmfY"Raccoon web panel - Click to Watch!")
 <br><br>
-جهت نصب بر روی هاست توسط دوست عزیزمون <a href="https://www.youtube.com/@iAghapour"> ایمان آقاپور </a> <br> <br>
-
-[![Raccoon web panel ](https://i.ibb.co/Tv4KKDP/Capture.jpg)](https://www.youtube.com/watch?v=gEJ4hVMzIVM&t=7s "Raccoon web panel - Click to Watch!")<br>
 
 </div>
 
