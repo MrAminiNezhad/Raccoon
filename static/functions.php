@@ -196,6 +196,7 @@ function client_info($username = null, $uuid = null)
         $expiry_time_str = jdate('Y-m-d', strtotime($info['expire_time']));
     }
     return [
+        'username' => $info['username'],
         'status' => $config_status,
         'total' => $total,
         'traffic_used' => $up + $down,
