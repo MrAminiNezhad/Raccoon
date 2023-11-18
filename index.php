@@ -37,17 +37,6 @@ if (strlen($crisp) >= 20) {
     <figure class="banner-right-img left_icon img">
       <img src="assets/images/header-right-img.png" alt="" class="star">
     </figure>
-    <header class="header">
-      <div class="main-header">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg navbar-light p-0">
-            <a class="navbar-brand pt-0" href="index.html">
-              <img src="assets/images/whiz-cyber-logo.png" alt="" class="img-fluid diverge-logo">
-            </a>
-          </nav>
-        </div>
-      </div>
-    </header>
     <div class="home-banner-section overflow-hidden position-relative">
       <center>
         <div class="logo">
