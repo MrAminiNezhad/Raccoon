@@ -1,8 +1,6 @@
 <?php
-
 error_reporting(E_ERROR);
 
-require_once __DIR__ . '/static/jdf.php';
 require  __DIR__ .  '/config.php';
 
 session_start();
