@@ -18,6 +18,9 @@ function run_login_script($panel, $cookie_file)
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
     $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        throw new Exception(curl_error($ch));
+    }
 
     if (strpos($response, '"success":false') !== false) throw new Exception($response);
     curl_close($ch);
@@ -58,6 +61,11 @@ function update_users()
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
         $response = json_decode(curl_exec($ch), true);
+
+        if (curl_errno($ch)) {
+            throw new Exception(curl_error($ch));
+        }
+
         curl_close($ch);
 
         unlink('.cookie.txt');
