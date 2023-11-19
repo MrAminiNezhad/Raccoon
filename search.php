@@ -1,7 +1,7 @@
 <?php
-require_once '/static/functions.php';
-require_once '/static/jdf.php';
-require '/config.php';
+require_once './static/functions.php';
+require_once './static/jdf.php';
+require './config.php';
 
 
 
