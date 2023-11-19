@@ -29,7 +29,8 @@ Then, to activate the online chat, enter the crisp.chat site and become a member
 
 # security options
 
-## for apache and litespeed just keep .htaccess file in directory of script
+## for apache and litespeed(not open-litespeed) just keep .htaccess file in directory of script
+(.htaccess file doesn't work in open-litespeed and nginx, and may pose security risks)
 
 ## for nginx
 
