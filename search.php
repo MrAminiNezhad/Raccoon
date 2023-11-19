@@ -1,7 +1,7 @@
 <?php
-require_once  __DIR__ . '/static/functions.php';
-require_once __DIR__ . '/static/jdf.php';
-require  __DIR__ .  '/config.php';
+require_once '/static/functions.php';
+require_once '/static/jdf.php';
+require '/config.php';
 
 
 
