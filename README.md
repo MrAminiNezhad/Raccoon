@@ -28,8 +28,7 @@ Supported types: sanaei, alireza,xpanel <br>
 Then, to activate the online chat, enter the crisp.chat site and become a member. After going through the membership process and entering the first page, click on the bottom gear and then select the first account option and then enter the Website Settings section in this front section. Click the name of your site on settings and click Setup instructions and copy the Website ID and enter it in the config.php file instead of Your ID.
 
 # security options
-
-## for apache and litespeed(not open-litespeed) just keep .htaccess file in directory of script
+for apache and litespeed(not open-litespeed) just keep .htaccess file in directory of script
 (.htaccess file doesn't work in open-litespeed and nginx, and may pose security risks)
 
 ## for nginx
