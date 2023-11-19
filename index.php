@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ERROR);
 
-require  __DIR__ .  '/config.php';
+require '/config.php';
 
 session_start();
 
