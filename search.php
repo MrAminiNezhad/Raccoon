@@ -195,7 +195,7 @@ if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window
          </a>
       </div>
    </div>
-   <?php echo $crisp_script; ?>
+   <?php echo $crisp_script ?? null; ?>
 </body>
 
 </html>
