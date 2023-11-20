@@ -3,8 +3,10 @@ require_once './static/functions.php';
 require_once './static/jdf.php';
 require './config.php';
 
-
-
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $current_page_url = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    
+    
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['username'])) {
    $client_info =  client_info($_GET['username']);
@@ -43,7 +45,7 @@ if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window
          <p class="p-head"><?php echo $lang['search_status']; ?></p>
       </div>
       <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
-      <div class="card" style="background-color: #2b34428a;border-radius: 15px;padding:10px;">
+      <div class="card" style="background-color: #2b34428a;border-radius: 15px;">
          <div class="card-body" style="display: flex;justify-content: space-between;padding-top: 25px">
             <h5 class="card-title name-conf"><?php echo $lang['config_name']; ?></h5>
             <p class="card-text"><?php echo $client_info['username'] ?> </p>
@@ -140,8 +142,18 @@ if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window
       </div>
    </div>
    <div class="container">
-      <div class="d-head">
-         <p class="p-head"> <?php echo $lang['linkdownload']; ?> </p>
+    <div class="d-head " style="justify-content: space-between">
+        <p class="p-head">لینک کوتاه این کانفینگ</p>
+      </div>
+      <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
+
+      <div class="search-wrapper cf">
+        <input type="text"  value="<?php echo $current_page_url; ?>" id="myInput" readonly style="box-shadow: none">
+        <button type="submit" onclick="myFunction()">کپی لینک</button>
+    </div>
+
+    <div class="d-head " style="justify-content: space-between">
+        <p class="p-head"> <?php echo $lang['linkdownload']; ?> </p>
       </div>
       <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
       <div class="flex-container">
@@ -197,5 +209,20 @@ if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window
    </div>
    <?php echo $crisp_script ?? null; ?>
 </body>
+<script>
+function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
 
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+</script>
 </html>
