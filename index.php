@@ -1,18 +1,14 @@
 <?php
 error_reporting(E_ERROR);
 
-require  __DIR__ .  '/config.php';
+require './config.php';
 
 session_start();
 
 $selected_language = isset($_GET['lang']) ? $_SESSION['selected_language'] = $_GET['lang'] : (isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : 'fa');
 
-$lang = $selected_language == 'en' ? require 'lang/en.php' : require 'lang/fa.php';
-if (strlen($crisp) >= 20) {
-  $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
-} else {
-  $crisp_script = "";
-}
+$lang = $selected_language == 'en' ? require './lang/en.php' : require './lang/fa.php';
+if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
 ?>
 <html>
 
@@ -75,7 +71,7 @@ if (strlen($crisp) >= 20) {
     </div>
   </div>
   <script src="assets/js/index.js"></script>
-  <?php echo $crisp_script; ?>
+  <?php echo $crisp_script ?? null; ?>
 </body>
 
 </html>
