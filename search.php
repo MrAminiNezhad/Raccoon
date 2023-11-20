@@ -143,7 +143,7 @@ if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window
    </div>
    <div class="container">
     <div class="d-head " style="justify-content: space-between">
-        <p class="p-head">لینک کوتاه این کانفینگ</p>
+        <p class="p-head">لینک کوتاه این کانفیگ</p>
       </div>
       <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
 
