@@ -1,46 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Not Found</title>
 </head>
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background: linear-gradient(to bottom right, #3494E6, #EC6EAD);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .content {
-        text-align: center;
-        color: white;
-    }
+@font-face {
+ font-family: Vazirmatn;
+ src: url('/fonts/Vazirmatn.woff');
+ src: url('/fonts/Vazirmatn.ttf');
+ font-weight: normal;
+}
+html {
+  min-height: 100%;
+}
 
-    .head {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        flex-direction: column;
-        text-align: center;
-    }
+body {
+  box-sizing: border-box;
+  height: 98%;
+  background-color: #000000;
+  background-image: radial-gradient(#11581E, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Inconsolata', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1ex rgba(51, 255, 51, 1),
+      0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.noise {
+  pointer-events: none;
+  position: absolute;
+  width: 99%;
+  height: 98%;
+  background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: .02;
+}
+
+.overlay {
+  pointer-events: none;
+  position: absolute;
+  width: 99%;
+  height: 98%;
+  background:
+      repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0) 100%);
+  background-size: auto 4px;
+  z-index: 1;
+}
+
+.overlay::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 99%;
+  height: 98%;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(32, 128, 32, 0.2) 2%,
+      rgba(32, 128, 32, 0.8) 3%,
+      rgba(32, 128, 32, 0.2) 3%,
+      transparent 100%);
+  background-repeat: no-repeat;
+  animation: scan 7.5s linear 0s infinite;
+}
+
+@keyframes scan {
+  0%        { background-position: 0 -100vh; }
+  35%, 100% { background-position: 0 100vh; }
+}
+
+.terminal {
+  box-sizing: inherit;
+  height: 100%;
+  max-width: 100%;
+  padding: 4rem;
+  text-transform: uppercase;
+  direction: rtl;
+}
+
+.output {
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1px rgba(51, 255, 51, 0.4),
+      0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.output::before {
+  content: "> ";
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a::before {
+  content: "[";
+}
+
+a::after {
+  content: "]";
+}
+
+.errorcode {
+  color: white;
+}
 </style>
-<div class="head">
-    <h1 style="margin: 20px;">اطلاعاتی با این یوزرنیم پیدا نشد</h1>
-    <div style="margin-bottom: 20px;">
-        <h1>cannot find any information with this username</h1>
-    </div>
-</div>
+
 
 <body>
-
+<div class="noise"></div>
+<div class="overlay"></div>
+<div class="terminal">
+  <h1>کانفیگ <span class="errorcode">پیدا نشد</span>😢</h1>
+  <p class="output">یوزر یا کانفیگ وارد شده اشتباه است <span class="errorcode">!!!</span></p>
+  <p class="output">با استفاده از <a href="javascript:void(0);" onclick="goBack()">این لینک</a> به عقب برگرد و مجدد تلاش بکن<span class="errorcode">...</span></p>
+  <p class="output">موفق باشید <span class="errorcode">♥</span></p>
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 </body>
+
+
 
 </html>
