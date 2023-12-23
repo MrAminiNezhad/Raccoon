@@ -1,5 +1,37 @@
 <?php
 
+session_start();
+
+// تعیین محدودیت‌ها
+$max_requests = 5;          // حداکثر تعداد درخواست‌ها
+$time_interval = 60;        // بازه زمانی (ثانیه) برای محدودیت
+$ban_duration = 15 * 60;     // مدت زمان مسدودیت (ثانیه)
+
+// اگر متغیرهای سشن تنظیم نشده باشند، آن‌ها را تعیین کنید
+if (!isset($_SESSION['request_count'])) {
+    $_SESSION['request_count'] = 0;
+    $_SESSION['request_start_time'] = time();
+}
+
+// افزایش تعداد درخواست
+$_SESSION['request_count']++;
+
+// چک کردن محدودیت تعداد درخواست‌ها
+if ($_SESSION['request_count'] > $max_requests) {
+    // چک کردن زمان باقی‌مانده از بازه زمانی
+    $elapsed_time = time() - $_SESSION['request_start_time'];
+    if ($elapsed_time < $time_interval) {
+        // کاربر مسدود شده است
+        header(include __DIR__ . '/../assets/ban.html');
+        exit;
+    } else {
+        // ریست تعداد درخواست و زمان شروع
+        $_SESSION['request_count'] = 1;
+        $_SESSION['request_start_time'] = time();
+    }
+}
+
+
 function run_login_script($panel, $cookie_file)
 {
     if (in_array($panel['type'], ['sanaei', 'alireza', 'xpanel']) === false) throw new Exception('wrong panel type');
