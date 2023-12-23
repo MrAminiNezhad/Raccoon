@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 $max_requests = 10;
