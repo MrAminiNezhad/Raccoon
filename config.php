@@ -32,7 +32,9 @@ $db = new Medoo([
 
 ]);
 
-$crisp = "Your ID"; // crisp id
+$crisp = "ID"; // crisp id
+$goftino = "ID"; // $goftino id
+$raychat = "ID"; // raychat id
 
 $panels = [
 
