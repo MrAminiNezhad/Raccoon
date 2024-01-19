@@ -3,10 +3,10 @@ require_once './static/functions.php';
 require_once './static/jdf.php';
 require './config.php';
 
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    $current_page_url = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    
-    
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+$current_page_url = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
 $status = 'لطفا نام کانفینگ خود را وارد بکنید.';
 if (isset($_GET['username'])) {
    $client_info =  client_info($_GET['username']);
@@ -21,8 +21,8 @@ $selected_language = isset($_GET['lang']) ? $_SESSION['selected_language'] = $_G
 $lang = $selected_language == 'en' ? require './lang/en.php' : require './lang/fa.php';
 
 if (strlen($crisp) >= 20) $crisp_script = "<script type='text/javascript'>window.\$crisp=[];window.CRISP_WEBSITE_ID='{$crisp}';(function(){d=document;s=d.createElement('script');s.src='https://client.crisp.chat/l.js';s.async=1;d.getElementsByTagName('head')[0].appendChild(s);})();</script>";
-if (strlen($goftino) >= 3) $goftino_script ="<script type='text/javascript'> !function(){var i='{$goftino}',d=document,g=d.createElement('script'),s='https://www.goftino.com/widget/'+i,l=localStorage.getItem('goftino_'+i);g.type='text/javascript',g.async=!0,g.src=l?s+'?o='+l:s;d.getElementsByTagName('head')[0].appendChild(g);}(); </script>";
-if (strlen($raychat) >= 5) $raychat_script ="<script type='text/javascript'>   window.RAYCHAT_TOKEN = '$raychat';     (function () {       d = document;       s = d.createElement('script');       s.src = 'https://widget-react.raychat.io/install/widget.js';       s.async = 1;       d.getElementsByTagName('head')[0].appendChild(s);     })(); </script>";
+if (strlen($goftino) >= 3) $goftino_script = "<script type='text/javascript'> !function(){var i='{$goftino}',d=document,g=d.createElement('script'),s='https://www.goftino.com/widget/'+i,l=localStorage.getItem('goftino_'+i);g.type='text/javascript',g.async=!0,g.src=l?s+'?o='+l:s;d.getElementsByTagName('head')[0].appendChild(g);}(); </script>";
+if (strlen($raychat) >= 5) $raychat_script = "<script type='text/javascript'>   window.RAYCHAT_TOKEN = '$raychat';     (function () {       d = document;       s = d.createElement('script');       s.src = 'https://widget-react.raychat.io/install/widget.js';       s.async = 1;       d.getElementsByTagName('head')[0].appendChild(s);     })(); </script>";
 ?>
 <html dir="rtl">
 
@@ -142,18 +142,18 @@ if (strlen($raychat) >= 5) $raychat_script ="<script type='text/javascript'>   w
       </div>
    </div>
    <div class="container">
-    <div class="d-head " style="justify-content: space-between">
-        <p class="p-head">لینک کوتاه این کانفیگ</p>
+      <div class="d-head " style="justify-content: space-between">
+         <p class="p-head">لینک کوتاه این کانفیگ</p>
       </div>
       <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
 
       <div class="search-wrapper cf">
-        <input type="text"  value="<?php echo $current_page_url; ?>" id="myInput" readonly style="box-shadow: none">
-        <button type="submit" onclick="myFunction()">کپی لینک</button>
-    </div>
+         <input type="text" value="<?php echo $current_page_url; ?>" id="myInput" readonly style="box-shadow: none">
+         <button type="submit" onclick="myFunction()">کپی لینک</button>
+      </div>
 
-    <div class="d-head " style="justify-content: space-between">
-        <p class="p-head"> <?php echo $lang['linkdownload']; ?> </p>
+      <div class="d-head " style="justify-content: space-between">
+         <p class="p-head"> <?php echo $lang['linkdownload']; ?> </p>
       </div>
       <hr style="border-radius: 50px; height: 2px; background-color: #edede9; width: 100%" ;>
       <div class="flex-container">
@@ -210,19 +210,20 @@ if (strlen($raychat) >= 5) $raychat_script ="<script type='text/javascript'>   w
    <?php echo $crisp_script ?? null; ?>
 </body>
 <script>
-function myFunction() {
-  // Get the text field
-  var copyText = document.getElementById("myInput");
+   function myFunction() {
+      // Get the text field
+      var copyText = document.getElementById("myInput");
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
+      // Select the text field
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // For mobile devices
 
-  // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-  
-  // Alert the copied text
-  alert("Copied the text: " + copyText.value);
-}
+      // Copy the text inside the text field
+      navigator.clipboard.writeText(copyText.value);
+
+      // Alert the copied text
+      alert("Copied the text: " + copyText.value);
+   }
 </script>
+
 </html>
