@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$max_requests = 100;
+$max_requests = 10;
 $time_interval = 60;
 $ban_duration = 20 * 60;
 

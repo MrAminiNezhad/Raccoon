@@ -5,7 +5,7 @@ return [
     'search_bar' => 'نام کاربری و یا کانفیگ خود را ارسال کنید',
     'button_search' => 'بررسی',
     'config_name' => 'نام کانفیگ',
-    'gb' => 'GB',
+    'gb' => 'گیگابایت',
     'day' => 'روز',
     'search_status' => 'مشخصات سرویس شما',
     'config_status' => 'وضعیت کانفیگ',
