@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$max_requests = 10;
+$max_requests = 100;
 $time_interval = 60;
 $ban_duration = 20 * 60;
 
@@ -54,6 +54,9 @@ function run_login_script($panel, $cookie_file)
 function update_users()
 {
     global $db, $panels;
+
+
+
 
     $db->delete('user', []);
     $db->delete('data_time', []);
@@ -127,8 +130,16 @@ function update_users()
                     $expire_time = $user['expiryTime'] == 0  ? 0 : date('Y-m-d H:i:s', $user['expiryTime'] / 1000);
 
 
-                    $db->insert('user', [
 
+                    foreach (json_decode($inbound['settings'], true)['clients'] as $user_conf) {
+                        if ($user_conf['email'] == $user['email']) {
+                            $id = $user_conf['id'];
+                            break;
+                        }
+                    }
+
+                    $db->insert('user', [
+                        'username' => strtolower($user['email']),
                         'uuid' => $id ?? null,
                         'status' => $user['enable'],
                         'total_traffic' => $total,
